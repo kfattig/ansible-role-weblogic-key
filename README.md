@@ -1,38 +1,53 @@
-Role Name
+Weblogic key
 =========
 
-A brief description of the role goes here.
+This role creates weblogic authentication keys using the provided username and password.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role requires WLST on the target host.  It's designed to be run on the AdminServer host, but could be run anywhere with WLST installed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Below are the variables in use,  see the defaults file for defaults.
+
+Name|Description
+---|---
+weblogic_admin|Username to authenticate with Weblogic (must be Admin user)
+weblogic_password|Password to authenticate with Weblogic
+t3_url|T3 URL to connect to Weblogic AdminServer
+script_temp_location|Location to stage WLST scripts
+oracle_user|User that owns weblogic installation (used for ownership of WLST scripts)
+oracle_group|Group that owns weblogic installation (used for ownership of WLST scripts)
+domain_name|Name of the weblogic domain
+wlst_script|Path to WLST script
+key_file |Path to store key file
+config_file|Path to store config file
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No Dependencies
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This sample creates files in tmp
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - name: create files
+    hosts: weblogic_admin_host
+    become: yes
+    become_user: mwadmin
+    roles:
+    - role: weblogic_key
+    vars:
+      config_file: /tmp/config_file
+      key_file: /tmp/key_file
 
-License
--------
-
-BSD
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+kyle.fattig@zirous.com
