@@ -6,7 +6,7 @@
     group: "{{ oracle_group }}"
 
 - name: Call create key script
-  shell: "{{ wlst_script }} {{ script_temp_location }}/create_key.py"
+  shell: "export WLST_PROPERTIES="-Dweblogic.management.confirmKeyfileCreation=true"; {{ wlst_script }} {{ script_temp_location }}/create_key.py"
 
 - name: Cleanup create_key
   file:
