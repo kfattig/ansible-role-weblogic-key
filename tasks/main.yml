@@ -1,2 +1,16 @@
----
-# tasks file for ansible-role-weblogic-key
+- name: Copy create key script
+  template:
+    src: templates/create_key.py
+    dest: "{{ script_temp_location }}/create_key.py"
+    owner: "{{ oracle_user }}"
+    group: "{{ oracle_group }}"
+
+- name: Call create key script
+  shell: "{{ wlst_script }} {{ script_temp_location }}/create_key.py"
+
+- name: Cleanup create_key
+  file:
+    state: absent
+    path: "{{ script_temp_location }}/create_key.py"
+  tags:
+    - always

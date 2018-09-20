@@ -1,2 +1,8 @@
----
-# defaults file for ansible-role-weblogic-key
+t3_url: 't3://localhost:9001'
+script_temp_location: '/tmp/'
+wlst_script: '/app/ENP/fmw1036/oracle_common/common/bin/wlst.sh'
+oracle_user: mwadmin
+oracle_group: mwgrp
+weblogic_admin: tower
+key_file: /app/ENP/fmw1036/PRODOSB_key
+config_file: /app/ENP/fmw1036/PRODOSB_Config
