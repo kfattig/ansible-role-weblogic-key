@@ -1,8 +1,8 @@
-t3_url: 't3://localhost:9001'
+t3_url: 't3://localhost:7001'
 script_temp_location: '/tmp/'
-wlst_script: '/app/ENP/fmw1036/oracle_common/common/bin/wlst.sh'
-oracle_user: mwadmin
-oracle_group: mwgrp
-weblogic_admin: tower
-key_file: /app/ENP/fmw1036/PRODOSB_key
-config_file: /app/ENP/fmw1036/PRODOSB_Config
+wlst_script: '/u01/app/oracle/fmw1036/oracle_common/common/bin/wlst.sh'
+oracle_user: oracle
+oracle_group: oracle
+weblogic_admin: weblogic
+key_file: /u01/app/oracle/fmw1036/domainkey
+config_file: u01/app/oracle/fmw1036/domainconfig
